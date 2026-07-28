@@ -119,9 +119,10 @@ if(!loggedinUser){
 
 //cookies
 
-const options ={
-httpOnly:true,
-secure:false
+const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax"
 };
 
 res.status(200)
@@ -189,9 +190,10 @@ user.refreshToken=refreshToken;
 await user.save();
 
 //cookies
-const options ={
-httpOnly:true,
-secure:false
+const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax"
 };
 
 res.status(200)
@@ -223,9 +225,10 @@ $unset:{ refreshToken:1
 }
 )
 //cookies
-const options ={
-httpOnly:true,
-secure:false
+const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax"
 };
 
 return res.status(200)
