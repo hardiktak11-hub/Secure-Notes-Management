@@ -1,105 +1,130 @@
-# 🔐 Secure Notes Management System
+# 📝 Secure Notes Management
 
-A full-stack Secure Notes Management application built using the MERN stack. The project focuses on implementing a production-style backend with JWT authentication, secure API design, CRUD operations, search, sorting, pagination, and protected routes.
+A full-stack **MERN** application that allows users to securely manage their personal notes with **JWT Authentication**, **Refresh Tokens**, **Protected Routes**, and a modern React frontend.
 
-The frontend provides a clean interface to interact with the backend APIs and was developed with AI-assisted guidance while the backend architecture, APIs, authentication, and database implementation were built and integrated by me.
+## 🚀 Live Demo
+
+- 🌐 **Frontend:** https://secure-notes-management.vercel.app
+- ⚙️ **Backend API:** https://secure-notes-management.onrender.com
+- 📂 **GitHub Repository:** https://github.com/hardiktak11-hub/Secure-Notes-Management
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-### Authentication
+### 🔐 Authentication
 - User Registration
 - User Login
-- JWT Access Token Authentication
-- Refresh Token Implementation
-- Secure HTTP-only Cookies
+- Secure JWT Authentication
+- Refresh Token Authentication
+- Logout
 - Protected Routes
-- Logout Functionality
+- HTTP-Only Cookies
+- Password Hashing using bcrypt
 
-### Notes Management
+### 📝 Notes Management
 - Create Notes
 - Read Notes
 - Update Notes
 - Delete Notes
-- Search Notes
-- Sort Notes
-- Pagination
 - Pin / Unpin Notes
-
-### Security
-- Password Hashing using bcrypt
-- JWT Authentication
-- Route Protection Middleware
-- Cookie-based Authentication
-- User-specific Notes Access
+- Search Notes
+- Pagination
+- Sort by Newest / Oldest
+- User-specific Notes (Each user only accesses their own notes)
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js
+- React Router DOM
+- Axios
+- Context API
+- CSS
 
 ### Backend
 - Node.js
 - Express.js
-- MongoDB
+- MongoDB Atlas
 - Mongoose
 - JWT
 - bcrypt
-- Cookie Parser
+- cookie-parser
+- CORS
 
-### Frontend
-- React
-- React Router
-- Axios
-- Tailwind CSS
+### Deployment
+- Frontend → Vercel
+- Backend → Render
+- Database → MongoDB Atlas
 
 ---
 
-# Project Structure
+## 📁 Project Structure
 
 ```
-Secure-Notes-Management/
+Secure-Notes-Management
 │
-├── backend/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── utils/
-│   ├── config/
-│   └── server.js
+├── frontend
+│   ├── src
+│   │   ├── component
+│   │   ├── context
+│   │   ├── pages
+│   │   ├── services
+│   │   └── App.jsx
+│   └── package.json
 │
-├── frontend/
-│   ├── components/
-│   ├── context/
-│   ├── pages/
-│   ├── services/
-│   └── App.jsx
+├── src
+│   ├── config
+│   ├── controllers
+│   ├── db
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── server.js
+│   └── app.js
+│
+├── package.json
+└── README.md
 ```
 
 ---
 
-# Backend Highlights
+## 🔑 Authentication Flow
 
-## Authentication Flow
-
-- Register User
-- Login User
-- Generate Access Token
-- Generate Refresh Token
-- Store Refresh Token
-- Verify JWT Middleware
-- Logout
-- Protected APIs
+1. User registers.
+2. Password is securely hashed using bcrypt.
+3. User logs in.
+4. Backend generates:
+   - Access Token
+   - Refresh Token
+5. Tokens are stored as HTTP-Only Cookies.
+6. Protected APIs verify JWT before allowing access.
+7. Refresh Token generates new Access Tokens when required.
 
 ---
 
-## Notes APIs
+## 📌 REST API Endpoints
+
+### Authentication
 
 | Method | Endpoint | Description |
 |---------|----------|-------------|
-| POST | `/api/v1/notes/createnote` | Create Note |
-| GET | `/api/v1/notes/getallnotes` | Get All Notes |
+| POST | `/api/v1/users/register` | Register User |
+| POST | `/api/v1/users/login` | Login |
+| POST | `/api/v1/users/logout` | Logout |
+| POST | `/api/v1/users/refresh-token` | Refresh Access Token |
+| GET | `/api/v1/users/current-user` | Get Current User |
+
+---
+
+### Notes
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/api/v1/notes` | Create Note |
+| GET | `/api/v1/notes` | Get All Notes |
 | GET | `/api/v1/notes/:id` | Get Note by ID |
 | PUT | `/api/v1/notes/:id` | Update Note |
 | DELETE | `/api/v1/notes/:id` | Delete Note |
@@ -107,114 +132,105 @@ Secure-Notes-Management/
 
 ---
 
-## Additional Backend Features
+## ⚙️ Environment Variables
 
-- MVC Architecture
-- RESTful API Design
-- User Authorization
-- Error Handling
-- Request Validation
-- Pagination
-- Sorting
-- Search using MongoDB Regular Expressions
-- Protected Middleware
-- Secure Cookie Authentication
+### Backend
+
+Create a `.env` file:
+
+```env
+PORT=10000
+
+MONGO_URI=your_mongodb_connection_string
+
+ACCESS_TOKEN_SECRET=your_access_secret
+
+REFRESH_TOKEN_SECRET=your_refresh_secret
+
+ACCESS_TOKEN_EXPIRY=15m
+
+REFRESH_TOKEN_EXPIRY=7d
+
+NODE_ENV=production
+```
 
 ---
 
-# Installation
+### Frontend
 
-## Clone Repository
+```env
+VITE_API_URL=https://secure-notes-management.onrender.com/api/v1
+```
+
+---
+
+## 💻 Installation
+
+### Clone Repository
 
 ```bash
 git clone https://github.com/hardiktak11-hub/Secure-Notes-Management.git
 ```
 
-## Backend
+### Backend
 
 ```bash
-cd backend
 npm install
-```
-
-Create a `.env` file:
-
-```env
-PORT=8000
-
-MONGODB_URI=YOUR_MONGODB_URI
-
-ACCESS_TOKEN_SECRET=YOUR_SECRET
-ACCESS_TOKEN_EXPIRY=15m
-
-REFRESH_TOKEN_SECRET=YOUR_SECRET
-REFRESH_TOKEN_EXPIRY=7d
-```
-
-Run backend
-
-```bash
 npm run dev
 ```
 
----
-
-## Frontend
+### Frontend
 
 ```bash
 cd frontend
+
 npm install
+
 npm run dev
 ```
 
 ---
 
-# Screenshots
+## 📸 Screenshots
 
-_Add screenshots here after deployment._
+### Login Page
 
----
+*(Add Screenshot)*
 
-# Learning Outcomes
+### Dashboard
 
-This project helped me gain practical experience with:
+*(Add Screenshot)*
 
-- Building REST APIs
-- JWT Authentication
-- Refresh Token Flow
-- Secure Cookie Authentication
-- MongoDB Querying
-- Mongoose Relationships
-- Express Middleware
-- MVC Architecture
-- CRUD Operations
-- API Integration with React
+### Create Note
+
+*(Add Screenshot)*
 
 ---
 
-# Frontend Note
+## 🌟 Future Improvements
 
-The frontend was developed with AI-assisted guidance to rapidly build a functional user interface while allowing me to focus on implementing and integrating the backend architecture, authentication flow, API design, and database operations. All backend logic, REST APIs, authentication, and database integration were implemented and tested by me.
-
----
-
-# Future Improvements
-
-- Rich Text Editor
-- File Attachments
 - Dark Mode
-- Tags & Categories
-- Note Sharing
-- Favorites
-- Real-time Collaboration
-- Deployment with Docker
+- Rich Text Editor
+- Note Categories
+- File Attachments
+- Share Notes
+- Email Verification
+- Forgot Password
+- Profile Management
+- Note Archive
+- Trash Bin
 
 ---
 
-# Author
+## 👨‍💻 Author
 
 **Hardik Tak**
 
-B.Tech Computer Science Engineering
+- GitHub: https://github.com/hardiktak11-hub
+- LinkedIn: *(Add LinkedIn URL)*
 
-GitHub: https://github.com/hardiktak11-hub
+---
+
+## ⭐ If you like this project
+
+Give it a ⭐ on GitHub!
