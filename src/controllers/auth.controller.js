@@ -121,8 +121,8 @@ if(!loggedinUser){
 
 const options = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax"
+    secure: true,
+    sameSite: "None",
 };
 
 res.status(200)
