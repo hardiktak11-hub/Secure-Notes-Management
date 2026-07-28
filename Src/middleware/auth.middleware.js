@@ -35,7 +35,7 @@ req.user = loggedinuser;
 next();
 }
 catch(error){
-return res.status(401).json({
+return res.status(500).json({
     success:false,
     message:"invalid or expired access token"
  });

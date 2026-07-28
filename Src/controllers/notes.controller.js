@@ -10,7 +10,7 @@ const content = req.body.content
 
 //if all required field are not entered
 if(!title || !content){
-   return res.status().json({
+   return res.status(400).json({
         success:false,
         message:"please enter both title and content"
     });
@@ -31,9 +31,9 @@ return res.status(201).json({
 });
 } 
 catch(error){
- return res.status(404).json({
+ return res.status(500).json({
     succes:false,
-    message:"error.message"
+    message:error.message
  });
 }
 }
@@ -96,7 +96,7 @@ return res.status(200).json({
 });
 }
 catch(error){
-    return res.status(404).json({
+    return res.status(500).json({
         success:false,
         message:"internal server error"
     });
@@ -142,7 +142,7 @@ const note = await Note.findOne({
     owner : req.user._id
 });
 if(!note){
-   return res.status(401).json({
+   return res.status(404).json({
         success:false,
         message:"Note not found"
     })
@@ -160,7 +160,7 @@ return res.status(200).json({
 });
 }
 catch(error){
-return res.status(404).json({
+return res.status(500).json({
     success:false,
     message:"internal server error"
 });
@@ -225,7 +225,7 @@ return res.status(200).json({
 });
 }
 catch(error){
-  return res.status(404).json({
+  return res.status(500).json({
     success:false,
     message: error.message
   });

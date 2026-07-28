@@ -43,10 +43,10 @@ try{
     "-password -refreshToken"
  );
  if(!createdUser){
-   return res.status(404).json({
+   return res.status(500).json({
         success:false,
         message:"some error occured"
-    })
+    });
  }
 
  res.status(201).json({
@@ -156,7 +156,7 @@ try{
 
 const incomingrefreshtoken = req.cookies.refreshToken;
 if(!incomingrefreshtoken){
-   res.status(404).json({
+   res.status(401).json({
       success:false,
       message:"unauthorized request"
    });
@@ -169,14 +169,14 @@ const decodedtoken = jwt.verify(
 
 const user = await User.findById(decodedtoken._id);
 if(!user){
-   return res.status(404).json({
+   return res.status(401).json({
       success:false,
       message:"invalid refresh token"
    })
 }
 
 if(incomingrefreshtoken!=user.refreshToken){
-   return res.status(404).json({
+   return res.status(401).json({
       success:false,
       message:"refresh token is expired or user already exist"
    });
