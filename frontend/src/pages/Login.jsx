@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
 import { useAuth } from "../context/Authcontext.jsx";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
@@ -78,6 +78,15 @@ function Login() {
           </button>
 
         </form>
+        <p className="text-center mt-6 text-sm text-gray-600">
+  Don't have an account?{" "}
+  <Link
+    to="/register"
+    className="text-green-600 hover:underline font-medium"
+  >
+    Register
+  </Link>
+</p>
 
       </div>
     </div>
